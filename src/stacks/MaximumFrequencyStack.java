@@ -38,8 +38,8 @@ public class MaximumFrequencyStack {
         if (stackList.get(stackList.size() - 1).empty())
             stackList.remove(stackList.size() - 1);
         map.put(val, map.get(val) - 1);
-        if (map.get(val) == 0)
-            map.remove(val);
+//        if (map.get(val) == 0)
+//            map.remove(val);
         return val;
 
 
