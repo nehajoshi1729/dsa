@@ -7,6 +7,9 @@ package twoPointer;
  * follow-up : using library sort is not allowed
  * <p>
  * Dutch National Flag Algorithm, TC = O(N)
+ * in case of current and high swap, only high will be decremented. For current, we can not be sure if the swapped number is 0/1/2,
+ * it will go through one more check and be located at it's correct location
+ *
  */
 
 public class SortColours {
