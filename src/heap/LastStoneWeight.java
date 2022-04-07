@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 /**
  * On each turn, we choose the heaviest two stones and smash them together. After smash, if both are equal both are destroyed if not x - y will be remaining
  * at end only at most one stone will be left
- *
+ * <p>
  * naive approach == keep sorting and getting the two largest stones,recalculate the remnant stone and sort again
  * better approach == maxHeap (implement using PriorityQueue) to get the top n elements,smash stones and heapify
  */
@@ -32,10 +32,9 @@ public class LastStoneWeight {
             int y = maxHeap.poll();
             if (x > y)
                 maxHeap.offer(x - y);
-            if (maxHeap.size() == 0)
-                return 0;
+
         }
-        return maxHeap.poll();
+        return (maxHeap.size() == 0) ? 0 : maxHeap.poll();
     }
 
 }
