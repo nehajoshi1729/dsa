@@ -12,25 +12,19 @@ import java.util.Map;
 
 public class EqualRowsAndColumns {
     private static int get(int[][] grid) {
-        int n = grid.length;
+        int m = grid.length, n = grid[0].length;
         int result = 0;
-        //<HashString,FrequencyCount>
+
         Map<String, Integer> rowHash = new HashMap<>();
         Map<String, Integer> colHash = new HashMap<>();
-        for (int[] row : grid) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i : row) {
-                stringBuilder.append(i).append("#"); //creating a hash
-            }
-            rowHash.put(stringBuilder.toString(), rowHash.getOrDefault(stringBuilder.toString(), 0) + 1);
 
+        for (int i = 0; i < m; i++) {
+            String s = getStringRow(i, grid);
+            rowHash.put(s, rowHash.getOrDefault(s, 0) + 1);
         }
         for (int i = 0; i < n; i++) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int j = 0; j < n; j++) {
-                stringBuilder.append(grid[j][i]).append("#");
-            }
-            colHash.put(colHash.toString(), colHash.getOrDefault(colHash.toString(), 0) + 1);
+            String s = getStringCol(i, grid);
+            colHash.put(s, colHash.getOrDefault(s, 0) + 1);
         }
         for (Map.Entry<String, Integer> entry : rowHash.entrySet()) {
             String currentRowHash = entry.getKey();
@@ -38,5 +32,21 @@ public class EqualRowsAndColumns {
                 result += colHash.get(currentRowHash) * rowHash.get(currentRowHash);
         }
         return result;
+    }
+
+    private static String getStringRow(int r, int[][] grid) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < grid[0].length; i++) {
+            stringBuilder.append(grid[r][i]).append("#");
+        }
+        return stringBuilder.toString();
+    }
+
+    private static String getStringCol(int c, int[][] grid) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < grid.length; i++) {
+            stringBuilder.append(grid[i][c]).append("#");
+        }
+        return stringBuilder.toString();
     }
 }
